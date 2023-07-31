@@ -2,6 +2,10 @@
   "name": "arcalive-api",
   "version": "1.0.0",
   "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RFLXN/arca-api.git"
+  },
   "license": "MIT",
   "scripts": {
     "lint": "eslint --fix ./src/**/*.ts",
