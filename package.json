@@ -1,0 +1,29 @@
+{
+  "name": "arcalive-api",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint --fix ./src/**/*.ts",
+    "clear": "rimraf -g lib/**/*",
+    "build": "tsc",
+    "prebuild": "yarn run clear && yarn run lint",
+    "test": "node ./lib/test.js",
+    "pretest": "yarn run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.5",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
+    "eslint": "^8.46.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-plugin-import": "^2.28.0",
+    "rimraf": "^5.0.1",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "cheerio": "^1.0.0-rc.12"
+  }
+}
