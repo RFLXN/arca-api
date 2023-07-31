@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { ROOT_URL } from "./constant";
+import { BOARD_URL } from "./constant";
 import { ListFetchOption } from "./type";
 
 class InvalidStatusCodeError extends Error {
@@ -16,7 +16,7 @@ class InvalidStatusCodeError extends Error {
 }
 
 function createListUrl(board: string, page: number = 1, option?: ListFetchOption) {
-    const url = new URL(`${ROOT_URL}/${board}`);
+    const url = new URL(`${BOARD_URL}/${board}`);
 
     if (option?.mode == "best") {
         url.searchParams.set("mode", "best");

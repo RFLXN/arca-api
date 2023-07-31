@@ -5,6 +5,7 @@ interface ArticleMetaData {
     time: Date;
     view: number;
     rate: number;
+    url: string;
 }
 interface HotDealMetaData extends ArticleMetaData {
     price: number;

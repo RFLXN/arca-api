@@ -3,6 +3,7 @@ import {
     isOnlyNum, replaceLineBreaks, replaceSpaces, replaceWonFormat
 } from "./util";
 import { ArticleMetaData, HotDealMetaData } from "./type";
+import { ROOT_URL } from "./constant";
 
 function parseList(html: string) {
     const $ = load(html);
@@ -39,13 +40,18 @@ function parseList(html: string) {
         const $rateWrap = $currentInner.find(".col-rate");
         const rateStr = replaceLineBreaks(replaceSpaces($rateWrap.text()));
 
+        // extract url
+        const $parent = $currentInner.parent();
+        const url = `${ROOT_URL}${$parent.first().attr("href") as string}`;
+
         const article: ArticleMetaData = {
             id: Number(id),
             title,
             author,
             time,
             view: isOnlyNum(viewStr) ? Number(viewStr) : 0,
-            rate: isOnlyNum(rateStr) ? Number(rateStr) : 0
+            rate: isOnlyNum(rateStr) ? Number(rateStr) : 0,
+            url
         };
 
         articles.push(article);
@@ -105,8 +111,13 @@ function parseHotDealList(html: string) {
         const $rateWrap = $current.find(".col-rate");
         const rateStr = replaceLineBreaks(replaceSpaces($rateWrap.text()));
 
+        // extract thumbnail
         const $thumbnailWrap = $current.find(".vrow-preview");
         const thumbnailUrl = `https:${$thumbnailWrap.children().first().attr("src")}`;
+
+        // extract url
+        const $url = $current.find(".preview-image");
+        const url = `${ROOT_URL}${($url.attr("href") as string)}`;
 
         const article: HotDealMetaData = {
             id: Number(id),
@@ -119,7 +130,8 @@ function parseHotDealList(html: string) {
             delivery: deliveryStr.includes("무료") ? 0 : Number(deliveryStr),
             store,
             category,
-            thumbnailUrl
+            thumbnailUrl,
+            url
         };
 
         articles.push(article);
