@@ -4,7 +4,7 @@ import { HotDealMetaData, ListFetchOption } from "./type";
 import { HOTDEAL_BOARD } from "./constant";
 
 export { InvalidStatusCodeError, FetchOption } from "./fetch";
-export { parseList };
+export { HotDealMetaData, ListFetchOption };
 
 export async function getArticleList(
     board: string,
